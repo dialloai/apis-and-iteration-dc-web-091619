@@ -32,9 +32,21 @@ def print_movies(films)
     response_hash = JSON.parse(response_string)
     response_hash
   end
+  # binding.pry
   film_hashes.each do |film| 
    puts  film["title"]
+   puts "**********************************\n\n"
+   character_hash = film["characters"].map do |character|
+      response_string = RestClient.get(character)
+    response_hash = JSON.parse(response_string)
+    response_hash
+    end
     # print film["characters"]
+    character_hash.each do |character|
+      puts character["name"]
+      puts "*****************\n"
+
+    end
   end
   # binding.pry
 
